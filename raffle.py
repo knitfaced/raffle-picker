@@ -4,7 +4,7 @@ import random
 entries = []
 total_wedge = 0
 
-with open('DonationsList.csv') as csv_file:
+with open('donations.csv') as csv_file:
 	#strip null bytes
 	csv_dict = csv.DictReader(x.replace('\0', '') for x in csv_file)
 
