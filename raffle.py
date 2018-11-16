@@ -18,16 +18,20 @@ with open('DonationsList.csv') as csv_file:
 
 print("total_wedge: %f" %(total_wedge))
 
-for row in entries:
-	print("\tname: %s amount: %s" %(row['name'], row['amount']))
+#for row in entries:
+#	print("\tname: %s amount: %s" %(row['name'], row['amount']))
 
 winning_number = random.randint(0, total_wedge)
-print("winning_number: %f" %(winning_number))
+print("winning_number: %i" %(winning_number))
 
-
-
-#	current_person = ""
-#	current_money = 0
-#	for row in csv_dict:
-#		current_money += float(row['Amount'])
-#		current_person = row['Display name']
+current_person = entries[0]['name']
+win_lower_threshold = 0
+for row in entries:
+	win_upper_threshold = win_lower_threshold + row['amount']
+	print("\tname: %s win_lower_threshold: %i" %(row['name'], win_lower_threshold))
+	print("\tname: %s win_upper_threshold: %i" %(row['name'], win_upper_threshold))
+	if (win_lower_threshold <= winning_number and winning_number < win_upper_threshold):
+		print("%s won!" %(row['name']))
+		break		
+	win_lower_threshold += row['amount']
+	current_person = row['name']
